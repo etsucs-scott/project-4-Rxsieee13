@@ -1,0 +1,63 @@
+﻿@inject RecipeManager RecipeManager
+@inject FileService FileService
+
+<h2>Recipes</h2>
+
+<input @bind="searchText" placeholder="Search..." />
+<button @onclick="Search">Search</button>
+
+<label>
+    <input type="checkbox" @bind="showFavoritesOnly" />
+    Favorites Only
+</label>
+
+<div class="recipe-grid">
+@foreach (var recipe in recipes)
+{
+    <div class="recipe-card @(recipe.IsFavorite ? "favorite" : "")">
+        <h4>@recipe.Name</h4>
+
+        <button @onclick="() => ToggleFavorite(recipe)">
+            @(recipe.IsFavorite ? "⭐" : "☆")
+        </button>
+
+        <button @onclick="() => Delete(recipe)">Delete</button>
+
+        <p>@recipe.Category</p>
+    </div>
+}
+</div>
+
+@code {
+    private List<Recipe> recipes = new();
+    private string searchText = "";
+    private bool showFavoritesOnly;
+
+    protected override void OnInitialized()
+    {
+        recipes = RecipeManager.GetAll();
+    }
+
+    void Search()
+    {
+        var result = RecipeManager.SearchByName(searchText);
+
+        if (showFavoritesOnly)
+            result = result.Where(r => r.IsFavorite).ToList();
+
+        recipes = result;
+    }
+
+    void ToggleFavorite(Recipe r)
+    {
+        RecipeManager.ToggleFavorite(r);
+        FileService.Save(RecipeManager.GetAll());
+    }
+
+    void Delete(Recipe r)
+    {
+        RecipeManager.DeleteRecipe(r);
+        FileService.Save(RecipeManager.GetAll());
+        recipes = RecipeManager.GetAll();
+    }
+}

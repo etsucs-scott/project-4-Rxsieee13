@@ -1,0 +1,18 @@
+﻿@inject RecipeManager RecipeManager
+@inject ShoppingListService Service
+
+<button @onclick="Generate">Generate</button>
+
+@foreach (var i in list)
+{
+    <p>@i.Name - @i.Quantity</p>
+}
+
+@code {
+    List<Ingredient> list = new();
+
+    void Generate()
+    {
+        list = Service.Generate(RecipeManager.GetAll());
+    }
+}

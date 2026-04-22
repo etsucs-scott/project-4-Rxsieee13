@@ -1,0 +1,46 @@
+﻿@inject RecipeManager RecipeManager
+@inject FileService FileService
+
+<h2>Add Recipe</h2>
+
+<input @bind="recipe.Name" placeholder="Name" />
+<input @bind="recipe.Category" placeholder="Category" />
+
+<input @bind="ingredientName" placeholder="Ingredient" />
+<input @bind="qty" type="number" />
+<input @bind="unit" placeholder="Unit" />
+
+<button @onclick="AddIngredient">Add Ingredient</button>
+
+<ul>
+@foreach (var i in recipe.Ingredients)
+{
+    <li>@i.Name</li>
+}
+</ul>
+
+<button @onclick="Save">Save</button>
+
+@code {
+    Recipe recipe = new();
+    string ingredientName;
+    double qty;
+    string unit;
+
+    void AddIngredient()
+    {
+        recipe.Ingredients.Add(new Ingredient
+        {
+            Name = ingredientName,
+            Quantity = qty,
+            Unit = unit
+        });
+    }
+
+    void Save()
+    {
+        RecipeManager.AddRecipe(recipe);
+        FileService.Save(RecipeManager.GetAll());
+        recipe = new Recipe();
+    }
+}

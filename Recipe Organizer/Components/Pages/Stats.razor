@@ -1,0 +1,17 @@
+﻿@inject RecipeManager RecipeManager
+
+<h2>Stats</h2>
+
+@foreach (var s in stats)
+{
+    <p>@s.Key - @s.Value</p>
+}
+
+@code {
+    Dictionary<string,int> stats = new();
+
+    protected override void OnInitialized()
+    {
+        stats = RecipeManager.GetMostUsedIngredients();
+    }
+}
