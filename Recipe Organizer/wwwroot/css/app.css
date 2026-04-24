@@ -68,3 +68,28 @@ h1:focus {
     background-color: #2f3640;
     color: white;
 }
+.dark-mode {
+    background-color: #1e272e;
+    color: white;
+}
+
+    .dark-mode .recipe-card {
+        background-color: #2f3640;
+        color: white;
+    }
+
+    .dark-mode .form-card {
+        background-color: #2f3640;
+    }
+
+.favorite {
+    border: 2px solid gold;
+}
+
+.recipe-card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    margin: 10px;
+}
