@@ -16,20 +16,9 @@
             <NavLink href="/stats">📊 Stats</NavLink>
         </nav>
 
-        <button class="theme-button" @onclick="ToggleDarkMode">🌙 Dark Mode</button>
     </aside>
 
     <main class="main-content">
         @Body
     </main>
 </div>
-
-@code {
-    private bool darkMode = false;
-
-    private async Task ToggleDarkMode()
-    {
-        darkMode = !darkMode;
-        await JS.InvokeVoidAsync("setTheme", darkMode ? "dark-mode" : "");
-    }
-}

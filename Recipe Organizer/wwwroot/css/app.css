@@ -168,19 +168,3 @@ textarea {
         opacity: 0;
     }
 }
-
-/* Dark mode */
-.dark-mode {
-    background: #2a1a23;
-    color: #ffd6ec;
-}
-
-    .dark-mode .sidebar {
-        background: linear-gradient(180deg, #c2185b, #880e4f);
-    }
-
-    .dark-mode .recipe-card,
-    .dark-mode .hero-card {
-        background: #3a2430;
-        color: white;
-    }
