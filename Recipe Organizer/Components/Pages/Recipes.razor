@@ -1,63 +1,34 @@
 ﻿@inject RecipeManager RecipeManager
 @inject FileService FileService
 
-<h2>Recipes</h2>
+<h2>🍽 Recipes</h2>
 
-<input @bind="searchText" placeholder="Search..." />
-<button @onclick="Search">Search</button>
+<div class="section">
+    <input @bind="searchText" placeholder="Search recipes..." />
+    <button class="btn btn-primary" @onclick="Search">Search</button>
 
-<label>
-    <input type="checkbox" @bind="showFavoritesOnly" />
-    Favorites Only
-</label>
+    <label style="margin-left:10px;">
+        <input type="checkbox" @bind="favoritesOnly" />
+        Favorites Only
+    </label>
+</div>
 
 <div class="recipe-grid">
-@foreach (var recipe in recipes)
+@foreach (var r in recipes)
 {
-    <div class="recipe-card @(recipe.IsFavorite ? "favorite" : "")">
-        <h4>@recipe.Name</h4>
+    <div class="recipe-card @(r.IsFavorite ? "favorite" : "")">
+        <h4>@r.Name</h4>
+        <p><b>Category:</b> @r.Category</p>
 
-        <button @onclick="() => ToggleFavorite(recipe)">
-            @(recipe.IsFavorite ? "⭐" : "☆")
-        </button>
+        <div>
+            <button @onclick="()=>Toggle(r)">
+                @(r.IsFavorite ? "⭐" : "☆")
+            </button>
 
-        <button @onclick="() => Delete(recipe)">Delete</button>
-
-        <p>@recipe.Category</p>
+            <button class="btn btn-danger btn-sm" @onclick="()=>Delete(r)">
+                Delete
+            </button>
+        </div>
     </div>
 }
 </div>
-
-@code {
-    private List<Recipe> recipes = new();
-    private string searchText = "";
-    private bool showFavoritesOnly;
-
-    protected override void OnInitialized()
-    {
-        recipes = RecipeManager.GetAll();
-    }
-
-    void Search()
-    {
-        var result = RecipeManager.SearchByName(searchText);
-
-        if (showFavoritesOnly)
-            result = result.Where(r => r.IsFavorite).ToList();
-
-        recipes = result;
-    }
-
-    void ToggleFavorite(Recipe r)
-    {
-        RecipeManager.ToggleFavorite(r);
-        FileService.Save(RecipeManager.GetAll());
-    }
-
-    void Delete(Recipe r)
-    {
-        RecipeManager.DeleteRecipe(r);
-        FileService.Save(RecipeManager.GetAll());
-        recipes = RecipeManager.GetAll();
-    }
-}
