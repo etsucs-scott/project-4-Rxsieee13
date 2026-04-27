@@ -1,4 +1,9 @@
-﻿html, body {
+﻿
+body {
+    background: hotpink !important;
+}
+
+html, body {
     margin: 0;
     font-family: 'Quicksand', sans-serif;
     background: #fff0f6;
