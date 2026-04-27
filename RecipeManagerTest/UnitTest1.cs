@@ -146,17 +146,30 @@ namespace RecipeManagerTest
             manager.AddRecipe(new Recipe
             {
                 Name = "Recipe 1",
-                Ingredients = new List<string> { "Eggs", "Flour", "Sugar" }
+                Ingredients = new List<Ingredient>
+                {
+                    new Ingredient { Name = "Eggs" },
+                    new Ingredient { Name = "Flour" },
+                    new Ingredient { Name = "Sugar" }
+                }
             });
             manager.AddRecipe(new Recipe
             {
                 Name = "Recipe 2",
-                Ingredients = new List<string> { "Eggs", "Milk" }
+                Ingredients = new List<Ingredient>
+                {
+                    new Ingredient { Name = "Eggs" },
+                    new Ingredient { Name = "Milk" }
+                }
             });
             manager.AddRecipe(new Recipe
             {
                 Name = "Recipe 3",
-                Ingredients = new List<string> { "Flour", "Butter" }
+                Ingredients = new List<Ingredient>
+                {
+                    new Ingredient { Name = "Flour" },
+                    new Ingredient { Name = "Butter" }
+                }
             });
             // Act
             var result = manager.GetMostUsedIngredients();
