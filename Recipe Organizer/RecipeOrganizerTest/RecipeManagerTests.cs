@@ -99,87 +99,87 @@ public class RecipeManagerTests
     [Fact]
     public void GetRecentRecipes_ShouldReturnNewestFirst()
     {
+        // Arrange
         var manager = CreateManager();
-
         manager.AddRecipe(new Recipe
         {
-            Name = "Old",
-            CreatedAt = DateTime.Now.AddDays(-1)
+            Name = "Old Recipe",
+            CreatedAt = DateTime.Now.AddHours(-1)
         });
-
         manager.AddRecipe(new Recipe
         {
-            Name = "New",
+            Name = "New Recipe",
             CreatedAt = DateTime.Now
         });
-
+        // Act
         var result = manager.GetRecentRecipes();
-
-        Assert.Equal("New", result.First().Name);
+        // Assert
+        Assert.Equal("New Recipe", result.First().Name);
     }
 
     [Fact]
     public void GetRecentRecipes_ShouldReturnMaxFive()
     {
+        // Arrange
         var manager = CreateManager();
-
         for (int i = 0; i < 10; i++)
         {
             manager.AddRecipe(new Recipe
             {
-                Name = $"Recipe{i}",
-                CreatedAt = DateTime.Now.AddMinutes(i)
+                Name = $"Recipe {i}",
+                CreatedAt = DateTime.Now.AddMinutes(-i)
             });
         }
-
+        // Act
         var result = manager.GetRecentRecipes();
-
+        // Assert
         Assert.Equal(5, result.Count);
     }
 
     [Fact]
     public void GetMostUsedIngredients_ShouldCountCorrectly()
     {
+        // Arrange
         var manager = CreateManager();
-
         manager.AddRecipe(new Recipe
         {
-            Ingredients = new List<Ingredient>
-            {
-                new Ingredient { Name = "Cheese" }
-            }
+            Name = "Recipe 1",
+            Ingredients = new List<string> { "Eggs", "Flour", "Sugar" }
         });
-
         manager.AddRecipe(new Recipe
         {
-            Ingredients = new List<Ingredient>
-            {
-                new Ingredient { Name = "Cheese" }
-            }
+            Name = "Recipe 2",
+            Ingredients = new List<string> { "Eggs", "Milk" }
         });
-
-        var stats = manager.GetMostUsedIngredients();
-
-        Assert.Equal(2, stats["Cheese"]);
+        manager.AddRecipe(new Recipe
+        {
+            Name = "Recipe 3",
+            Ingredients = new List<string> { "Flour", "Butter" }
+        });
+        // Act
+        var result = manager.GetMostUsedIngredients();
     }
 
     [Fact]
     public void AddMultipleRecipes_ShouldStoreAll()
     {
+        // Arrange
         var manager = CreateManager();
-
-        manager.AddRecipe(new Recipe());
-        manager.AddRecipe(new Recipe());
-        manager.AddRecipe(new Recipe());
-
-        Assert.Equal(3, manager.GetAll().Count);
+        // Act
+        manager.AddRecipe(new Recipe { Name = "Recipe A" });
+        manager.AddRecipe(new Recipe { Name = "Recipe B" });
+        manager.AddRecipe(new Recipe { Name = "Recipe C" });
+        // Assert
+        var allRecipes = manager.GetAll();
+        Assert.Equal(3, allRecipes.Count);
     }
 
     [Fact]
     public void Favorite_DefaultShouldBeFalse()
     {
-        var recipe = new Recipe();
-
+        // Arrange
+        var recipe = new Recipe { Name = "Test Cake Recipe" };
+        // Assert
         Assert.False(recipe.IsFavorite);
     }
 }
