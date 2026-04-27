@@ -4,11 +4,9 @@
 <div class="app-shell">
     <aside class="sidebar">
         <div class="brand">
-            <div class="brand-icon">🍳</div>
-            <div>
-                <h2>Recipe Organizer</h2>
-                <p>Plan. Save. Cook.</p>
-            </div>
+            <div class="brand-logo">🍳</div>
+            <h2>Recipe Organizer</h2>
+            <p>Plan. Save. Cook.</p>
         </div>
 
         <nav class="nav-links">
@@ -19,12 +17,12 @@
             <NavLink href="/stats">📊 Stats</NavLink>
         </nav>
 
-        <button class="dark-btn" @onclick="ToggleDarkMode">
-            🌙 Toggle Dark Mode
+        <button class="theme-button" @onclick="ToggleDarkMode">
+            🌙 Dark Mode
         </button>
     </aside>
 
-    <main class="content">
+    <main class="main-content">
         @Body
     </main>
 </div>
