@@ -2,8 +2,9 @@
 
 public class RecipeManager
 {
-    // In a real application, consider using a database or more robust storage solution.
+    // In-memory storage for recipes and category mapping
     private List<Recipe> _recipes = new();
+    // Key: Category name, Value: List of recipes in that category
     private Dictionary<string, List<Recipe>> _categoryMap = new();
 
     // Load recipes and build category map
