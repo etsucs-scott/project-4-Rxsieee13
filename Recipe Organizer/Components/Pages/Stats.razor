@@ -1,12 +1,21 @@
-﻿@inject RecipeManager RecipeManager
+﻿@page "/stats"
+
+@inject RecipeManager RecipeManager
 
 <h2>📊 Ingredient Stats</h2>
 
 <div class="recipe-card">
-    <ul>
-        @foreach (var s in stats.Take(10))
-        {
-            <li>@s.Key — used in @s.Value recipes</li>
-        }
-    </ul>
+    @foreach (var s in stats)
+    {
+        <p>@s.Key — used in @s.Value recipe(s)</p>
+    }
 </div>
+
+@code {
+    private Dictionary<string, int> stats = new();
+
+    protected override void OnInitialized()
+    {
+        stats = RecipeManager.GetMostUsedIngredients();
+    }
+}

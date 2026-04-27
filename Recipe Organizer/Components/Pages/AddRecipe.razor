@@ -1,10 +1,11 @@
-﻿@inject RecipeManager RecipeManager
+﻿@page "/add-recipe"
+
+@inject RecipeManager RecipeManager
 @inject FileService FileService
 
 <h2>➕ Add Recipe</h2>
 
 <div class="recipe-card">
-
     <input @bind="recipe.Name" placeholder="Recipe Name" />
     <input @bind="recipe.Category" placeholder="Category" />
 
@@ -14,9 +15,7 @@
     <input @bind="qty" type="number" placeholder="Qty" />
     <input @bind="unit" placeholder="Unit" />
 
-    <button class="btn btn-secondary" @onclick="AddIngredient">
-        Add Ingredient
-    </button>
+    <button @onclick="AddIngredient">Add Ingredient</button>
 
     <ul>
         @foreach (var i in recipe.Ingredients)
@@ -25,7 +24,35 @@
         }
     </ul>
 
-    <button class="btn btn-success" @onclick="Save">
-        Save Recipe
-    </button>
+    <textarea @bind="recipe.Instructions" placeholder="Instructions"></textarea>
+
+    <button @onclick="Save">Save Recipe</button>
 </div>
+
+@code {
+    private Recipe recipe = new();
+    private string ingredientName = "";
+    private double qty;
+    private string unit = "";
+
+    private void AddIngredient()
+    {
+        recipe.Ingredients.Add(new Ingredient
+        {
+            Name = ingredientName,
+            Quantity = qty,
+            Unit = unit
+        });
+
+        ingredientName = "";
+        qty = 0;
+        unit = "";
+    }
+
+    private void Save()
+    {
+        RecipeManager.AddRecipe(recipe);
+        FileService.Save(RecipeManager.GetAll());
+        recipe = new Recipe();
+    }
+}

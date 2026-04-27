@@ -1,11 +1,11 @@
-﻿@inject RecipeManager RecipeManager
-@inject ShoppingListService Service
+﻿@page "/shopping-list"
+
+@inject RecipeManager RecipeManager
+@inject ShoppingListService ShoppingListService
 
 <h2>🛒 Shopping List</h2>
 
-<button class="btn btn-primary" @onclick="Generate">
-    Generate List
-</button>
+<button @onclick="Generate">Generate List</button>
 
 <div class="recipe-card">
     @foreach (var i in list)
@@ -13,3 +13,12 @@
         <p>@i.Name — @i.Quantity @i.Unit</p>
     }
 </div>
+
+@code {
+    private List<Ingredient> list = new();
+
+    private void Generate()
+    {
+        list = ShoppingListService.Generate(RecipeManager.GetAll());
+    }
+}

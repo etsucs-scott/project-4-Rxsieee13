@@ -1,43 +1,40 @@
 ﻿@inherits LayoutComponentBase
-
 @inject IJSRuntime JS
+
+<div class="app-shell">
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">🍳</div>
+            <div>
+                <h2>Recipe Organizer</h2>
+                <p>Plan. Save. Cook.</p>
+            </div>
+        </div>
+
+        <nav class="nav-links">
+            <NavLink href="/" Match="NavLinkMatch.All">🏠 Home</NavLink>
+            <NavLink href="/recipes">🍽 Recipes</NavLink>
+            <NavLink href="/add-recipe">➕ Add Recipe</NavLink>
+            <NavLink href="/shopping-list">🛒 Shopping List</NavLink>
+            <NavLink href="/stats">📊 Stats</NavLink>
+        </nav>
+
+        <button class="dark-btn" @onclick="ToggleDarkMode">
+            🌙 Toggle Dark Mode
+        </button>
+    </aside>
+
+    <main class="content">
+        @Body
+    </main>
+</div>
 
 @code {
     private bool darkMode = false;
 
-    async Task ToggleDarkMode()
+    private async Task ToggleDarkMode()
     {
         darkMode = !darkMode;
         await JS.InvokeVoidAsync("setTheme", darkMode ? "dark-mode" : "");
     }
 }
-
-<div class="main-container">
-    @Body
-</div>
-
-<button class="btn btn-dark m-2" @onclick="ToggleDarkMode">
-     Toggle Dark Mode
-</button>
-
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
-
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div>
-
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
-</div>
-
-<div id="blazor-error-ui" data-nosnippet>
-    An unhandled error has occurred.
-    <a href="." class="reload">Reload</a>
-    <span class="dismiss">🗙</span>
-</div>

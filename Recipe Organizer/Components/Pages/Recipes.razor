@@ -1,34 +1,68 @@
-﻿@inject RecipeManager RecipeManager
+﻿@page "/recipes"
+
+@inject RecipeManager RecipeManager
 @inject FileService FileService
 
 <h2>🍽 Recipes</h2>
 
 <div class="section">
     <input @bind="searchText" placeholder="Search recipes..." />
-    <button class="btn btn-primary" @onclick="Search">Search</button>
+    <button @onclick="Search">Search</button>
 
-    <label style="margin-left:10px;">
+    <label>
         <input type="checkbox" @bind="favoritesOnly" />
         Favorites Only
     </label>
 </div>
 
 <div class="recipe-grid">
-@foreach (var r in recipes)
-{
-    <div class="recipe-card @(r.IsFavorite ? "favorite" : "")">
-        <h4>@r.Name</h4>
-        <p><b>Category:</b> @r.Category</p>
+    @foreach (var r in recipes)
+    {
+        <div class="recipe-card @(r.IsFavorite ? "favorite" : "")">
+            <h4>@r.Name</h4>
+            <p><b>Category:</b> @r.Category</p>
 
-        <div>
-            <button @onclick="()=>Toggle(r)">
+            <button @onclick="() => Toggle(r)">
                 @(r.IsFavorite ? "⭐" : "☆")
             </button>
 
-            <button class="btn btn-danger btn-sm" @onclick="()=>Delete(r)">
+            <button @onclick="() => Delete(r)">
                 Delete
             </button>
         </div>
-    </div>
-}
+    }
 </div>
+
+@code {
+    private List<Recipe> recipes = new();
+    private string searchText = "";
+    private bool favoritesOnly = false;
+
+    protected override void OnInitialized()
+    {
+        recipes = RecipeManager.GetAll();
+    }
+
+    private void Search()
+    {
+        var result = RecipeManager.SearchByName(searchText);
+
+        if (favoritesOnly)
+            result = result.Where(r => r.IsFavorite).ToList();
+
+        recipes = result;
+    }
+
+    private void Toggle(Recipe r)
+    {
+        RecipeManager.ToggleFavorite(r);
+        FileService.Save(RecipeManager.GetAll());
+    }
+
+    private void Delete(Recipe r)
+    {
+        RecipeManager.DeleteRecipe(r);
+        FileService.Save(RecipeManager.GetAll());
+        recipes = RecipeManager.GetAll();
+    }
+}
