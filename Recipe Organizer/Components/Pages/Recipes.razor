@@ -22,8 +22,8 @@
             <h4>@r.Name</h4>
             <p><b>Category:</b> @r.Category</p>
 
-            <button @onclick="() => Toggle(r)">
-                @(r.IsFavorite ? "⭐" : "☆")
+            <button class="favorite-btn" @onclick="() => Toggle(r)">
+                @(r.IsFavorite ? "💖 Favorite" : "🤍 Favorite")
             </button>
 
             <button @onclick="() => Delete(r)">

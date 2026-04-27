@@ -168,3 +168,56 @@ textarea {
         opacity: 0;
     }
 }
+
+/* Card and button animations */
+.recipe-card,
+.feature-card,
+.form-card,
+.hero-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+    .recipe-card:hover,
+    .feature-card:hover,
+    .form-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 14px 30px rgba(255, 105, 180, 0.25);
+    }
+
+/* Button and link animations */
+button,
+.primary-link,
+.secondary-link {
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+    button:hover,
+    .primary-link:hover,
+    .secondary-link:hover {
+        transform: scale(1.05);
+    }
+
+/* Favorite button */
+.favorite-btn {
+    background: #ff8fc7;
+}
+
+    .favorite-btn:hover {
+        background: #ff4da6;
+    }
+
+.favorite {
+    border: 3px solid #ff69b4;
+    background: #fff0f6;
+}
+
+/* Success message */
+.success-message {
+    background: #ffe6f2;
+    color: #c2185b;
+    padding: 12px 16px;
+    border-radius: 14px;
+    font-weight: 700;
+    margin-top: 12px;
+    border: 1px solid #ffb6d9;
+}
