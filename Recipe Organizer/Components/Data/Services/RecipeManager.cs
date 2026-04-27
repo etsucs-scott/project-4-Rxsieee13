@@ -2,9 +2,11 @@
 
 public class RecipeManager
 {
+    // In a real application, consider using a database or more robust storage solution.
     private List<Recipe> _recipes = new();
     private Dictionary<string, List<Recipe>> _categoryMap = new();
 
+    // Load recipes and build category map
     public void Load(List<Recipe> recipes)
     {
         _recipes = recipes;
@@ -19,6 +21,7 @@ public class RecipeManager
         }
     }
 
+    // Add a new recipe
     public void AddRecipe(Recipe recipe)
     {
         _recipes.Add(recipe);
@@ -29,6 +32,7 @@ public class RecipeManager
         _categoryMap[recipe.Category].Add(recipe);
     }
 
+    // Delete a recipe
     public void DeleteRecipe(Recipe recipe)
     {
         _recipes.Remove(recipe);
@@ -37,6 +41,7 @@ public class RecipeManager
             _categoryMap[recipe.Category].Remove(recipe);
     }
 
+    // Update an existing recipe
     public void UpdateRecipe(Recipe updated)
     {
         var existing = _recipes.FirstOrDefault(r => r.Name == updated.Name);
@@ -49,13 +54,16 @@ public class RecipeManager
         }
     }
 
+    // Toggle favorite status
     public void ToggleFavorite(Recipe recipe)
     {
         recipe.IsFavorite = !recipe.IsFavorite;
     }
 
+    // Get all recipes
     public List<Recipe> GetAll() => _recipes;
 
+    // Search recipes by name
     public List<Recipe> SearchByName(string keyword)
     {
         return _recipes
@@ -63,6 +71,7 @@ public class RecipeManager
             .ToList();
     }
 
+    // Filter recipes by ingredient
     public List<Recipe> FilterByIngredient(string ingredient)
     {
         return _recipes
@@ -71,6 +80,7 @@ public class RecipeManager
             .ToList();
     }
 
+    // Get recipes by category
     public List<Recipe> GetRecentRecipes()
     {
         return _recipes
@@ -79,6 +89,7 @@ public class RecipeManager
             .ToList();
     }
 
+    // Get a count of how many times each ingredient is used across all recipes
     public Dictionary<string, int> GetMostUsedIngredients()
     {
         var count = new Dictionary<string, int>();

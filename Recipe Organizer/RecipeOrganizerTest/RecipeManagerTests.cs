@@ -5,6 +5,7 @@ using Xunit;
 
 public class RecipeManagerTests
 {
+    // Helper method to create a new RecipeManager instance for each test
     private RecipeManager CreateManager()
     {
         return new RecipeManager();

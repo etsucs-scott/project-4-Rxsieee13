@@ -4,8 +4,11 @@ using System.Text.Json;
 
 public class FileService
 {
+    // In a real application, consider using a more robust storage solution
+    // (e.g., database) and handling exceptions properly.
     private readonly string path = "wwwroot/data/recipes.json";
 
+    // Save recipes to a JSON file
     public void Save(List<Recipe> recipes)
     {
         try
@@ -16,6 +19,7 @@ public class FileService
         catch { }
     }
 
+    // Load recipes from a JSON file
     public List<Recipe> Load()
     {
         try
