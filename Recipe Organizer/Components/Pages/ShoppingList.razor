@@ -3,22 +3,53 @@
 @inject RecipeManager RecipeManager
 @inject ShoppingListService ShoppingListService
 
-<h2>🛒 Shopping List</h2>
+<h2>🛒 Generate Shopping List</h2>
 
-<button @onclick="Generate">Generate List</button>
+<div class="form-card">
+    <input @bind="recipeName" placeholder="Type recipe name..." />
 
-<div class="recipe-card">
-    @foreach (var i in list)
+    <button @onclick="GenerateForRecipe">
+        Generate List
+    </button>
+
+    @if (!string.IsNullOrWhiteSpace(message))
     {
-        <p>@i.Name — @i.Quantity @i.Unit</p>
+        <p class="success-message">@message</p>
     }
 </div>
 
+@if (list.Count > 0)
+{
+    <div class="recipe-card">
+        <h3>Shopping List for @selectedRecipeName</h3>
+
+        @foreach (var item in list)
+        {
+            <p>💕 @item.Name — @item.Quantity @item.Unit</p>
+        }
+    </div>
+}
+
 @code {
+    private string recipeName = "";
+    private string selectedRecipeName = "";
+    private string message = "";
     private List<Ingredient> list = new();
 
-    private void Generate()
+    private void GenerateForRecipe()
     {
-        list = ShoppingListService.Generate(RecipeManager.GetAll());
+        var recipe = RecipeManager.GetAll()
+            .FirstOrDefault(r => r.Name.Contains(recipeName, StringComparison.OrdinalIgnoreCase));
+
+        if (recipe == null)
+        {
+            list.Clear();
+            message = "No recipe found with that name.";
+            return;
+        }
+
+        selectedRecipeName = recipe.Name;
+        list = ShoppingListService.Generate(new List<Recipe> { recipe });
+        message = "💖 Shopping list generated!";
     }
 }

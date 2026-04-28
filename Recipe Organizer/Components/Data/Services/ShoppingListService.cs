@@ -2,25 +2,32 @@
 
 public class ShoppingListService
 {
-    // This service generates a shopping list by aggregating ingredients from selected recipes.
+    // Generates a consolidated shopping list from a list of recipes.
     public List<Ingredient> Generate(List<Recipe> recipes)
     {
+        // Key: ingredient name (lowercase), Value: consolidated ingredient
         var result = new Dictionary<string, Ingredient>();
 
-        // Aggregate ingredients from all recipes, summing quantities for duplicates
+        // Loop through each recipe and its ingredients to aggregate quantities.
         foreach (var recipe in recipes)
         {
             foreach (var ing in recipe.Ingredients)
             {
-                if (result.ContainsKey(ing.Name))
-                    result[ing.Name].Quantity += ing.Quantity;
+                string key = ing.Name.ToLower();
+
+                if (result.ContainsKey(key))
+                {
+                    result[key].Quantity += ing.Quantity;
+                }
                 else
-                    result[ing.Name] = new Ingredient
+                {
+                    result[key] = new Ingredient
                     {
                         Name = ing.Name,
                         Quantity = ing.Quantity,
                         Unit = ing.Unit
                     };
+                }
             }
         }
 
