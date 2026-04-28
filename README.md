@@ -43,4 +43,36 @@ dotnet run --project ProjectName.App
 - Update this README with build/run instructions specific to your project.
 
 # Recipe Organizer Project
-- 
+- The Recipe Organizer is a web-based application built using Blazor 
+- that allows users to manage recipes, search by name, view detailed instructions,
+- and generate shopping lists based on ingredients.
+
+# Project Features
+- Add, view, and delete recipes
+- Search recipes by name
+- Mark recipes as favorites
+- Click a recipe to view ingredients and instructions
+- Generate a shopping list based on a selected recipe
+- View statistics of most-used ingredients
+- Custom pink-themed UI design
+
+# Technologies Used
+- Blazor WebAssembly
+- C# (.NET / Blazor)
+- Razor Components
+- HTML & CSS
+- JSON (for data storage)
+
+# Run Project 
+- dotnet build 
+- dotnet run
+- Then open your browser and navigate to:
+- https://localhost:7051
+
+# How to Run Unit Tests
+- Open Test Explorer in Visual Studio
+- Click:
+- Run All Tests
+- Or use the command line:
+- dotnet test
+- This will execute all unit tests and display the results in the terminal.
