@@ -221,3 +221,33 @@ button,
     margin-top: 12px;
     border: 1px solid #ffb6d9;
 }
+
+/* Feature link */
+.feature-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+    .feature-link:hover {
+        cursor: pointer;
+    }
+
+/* Recipe Detail Card */
+.recipe-detail-card {
+    background: #fff0f8;
+    border: 2px solid #ff9ed2;
+    border-radius: 24px;
+    padding: 24px;
+    margin: 20px 0;
+    box-shadow: 0 12px 30px rgba(255, 105, 180, 0.25);
+}
+
+    .recipe-detail-card h2 {
+        color: #c2185b;
+    }
+
+.close-btn {
+    float: right;
+    background: #ff69b4;
+}

@@ -1,44 +1,48 @@
 ﻿@page "/"
 
+<!-- HERO SECTION -->
 <section class="hero-card">
     <div>
-        <span class="badge"> Recipe Organizer</span>
+        <span class="badge">Recipe Organizer</span>
         <h1>Cook smarter with your personal recipe hub.</h1>
         <p>
             Save recipes, search ingredients, favorite meals, and generate shopping lists all in one clean app.
         </p>
 
         <div class="hero-actions">
-            <a href="/add-recipe" class="primary-link">➕ Add Recipe</a>
-            <a href="/recipes" class="secondary-link">🍽 View Recipes</a>
+            <a class="primary-link" href="/add-recipe">➕ Add Recipe</a>
+            <a class="secondary-link" href="/recipes">🍽 View Recipes</a>
         </div>
     </div>
 
     <div class="hero-emoji">🥘</div>
 </section>
 
+<!-- 💖 CLICKABLE FEATURE CARDS -->
 <section class="feature-grid">
-    <div class="feature-card">
+
+    <a class="feature-card feature-link" href="/recipes">
         <div class="feature-icon">🔎</div>
         <h3>Ingredient Search</h3>
         <p>Find meals based on ingredients you already have.</p>
-    </div>
+    </a>
 
-    <div class="feature-card">
+    <a class="feature-card feature-link" href="/shopping-list">
         <div class="feature-icon">🛒</div>
         <h3>Shopping Lists</h3>
         <p>Combine ingredients from recipes automatically.</p>
-    </div>
+    </a>
 
-    <div class="feature-card">
+    <a class="feature-card feature-link" href="/recipes">
         <div class="feature-icon">⭐</div>
         <h3>Favorites</h3>
         <p>Star your favorite recipes for quick access.</p>
-    </div>
+    </a>
 
-    <div class="feature-card">
+    <a class="feature-card feature-link" href="/stats">
         <div class="feature-icon">📊</div>
         <h3>Stats</h3>
         <p>Track your most-used ingredients over time.</p>
-    </div>
+    </a>
+
 </section>

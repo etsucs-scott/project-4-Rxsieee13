@@ -5,28 +5,48 @@
 
 <h2>🍽 Recipes</h2>
 
-<div class="section">
-    <input @bind="searchText" placeholder="Search recipes..." />
-    <button @onclick="Search">Search</button>
+<input @bind="searchText" placeholder="Search recipes..." />
 
-    <label>
-        <input type="checkbox" @bind="favoritesOnly" />
-        Favorites Only
-    </label>
-</div>
+<button @onclick="Search">Search</button>
+
+<label>
+    <input type="checkbox" @bind="favoritesOnly" />
+    Favorites Only
+</label>
+
+@if (selectedRecipe != null)
+{
+    <div class="recipe-detail-card">
+        <button class="close-btn" @onclick="CloseDetails">X</button>
+
+        <h2>@selectedRecipe.Name</h2>
+        <p><b>Category:</b> @selectedRecipe.Category</p>
+
+        <h3>Ingredients</h3>
+        <ul>
+            @foreach (var ingredient in selectedRecipe.Ingredients)
+            {
+                <li>@ingredient.Quantity @ingredient.Unit @ingredient.Name</li>
+            }
+        </ul>
+
+        <h3>Instructions</h3>
+        <p>@selectedRecipe.Instructions</p>
+    </div>
+}
 
 <div class="recipe-grid">
     @foreach (var r in recipes)
     {
-        <div class="recipe-card @(r.IsFavorite ? "favorite" : "")">
-            <h4>@r.Name</h4>
+        <div class="recipe-card @(r.IsFavorite ? "favorite" : "")" @onclick="() => ShowDetails(r)">
+            <h3>@r.Name</h3>
             <p><b>Category:</b> @r.Category</p>
 
-            <button class="favorite-btn" @onclick="() => Toggle(r)">
+            <button class="favorite-btn" @onclick:stopPropagation="true" @onclick="() => Toggle(r)">
                 @(r.IsFavorite ? "💖 Favorite" : "🤍 Favorite")
             </button>
 
-            <button @onclick="() => Delete(r)">
+            <button @onclick:stopPropagation="true" @onclick="() => Delete(r)">
                 Delete
             </button>
         </div>
@@ -37,6 +57,7 @@
     private List<Recipe> recipes = new();
     private string searchText = "";
     private bool favoritesOnly = false;
+    private Recipe? selectedRecipe = null;
 
     protected override void OnInitialized()
     {
@@ -53,6 +74,16 @@
         recipes = result;
     }
 
+    private void ShowDetails(Recipe recipe)
+    {
+        selectedRecipe = recipe;
+    }
+
+    private void CloseDetails()
+    {
+        selectedRecipe = null;
+    }
+
     private void Toggle(Recipe r)
     {
         RecipeManager.ToggleFavorite(r);
@@ -64,5 +95,6 @@
         RecipeManager.DeleteRecipe(r);
         FileService.Save(RecipeManager.GetAll());
         recipes = RecipeManager.GetAll();
+        selectedRecipe = null;
     }
 }
