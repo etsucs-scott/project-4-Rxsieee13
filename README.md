@@ -70,9 +70,36 @@ dotnet run --project ProjectName.App
 - https://localhost:7051
 
 # How to Run Unit Tests
-- Open Test Explorer in Visual Studio
+- Open Test Explorer in Visual Studio 2022
 - Click:
 - Run All Tests
 - Or use the command line:
 - dotnet test
 - This will execute all unit tests and display the results in the terminal.
+
+# Data Storage
+-All recipe data is stored in: wwwroot/data/recipes.json
+- The application uses file I/O to: Save recipes and Load recipes on startup
+
+# UML Diagram
+- A UML diagram was created using draw.io and includes:
+- Classes: Recipe, Ingredient, RecipeManager, FileService, ShoppingListService
+- Relationships between data models and services
+- System structure and responsibilities
+
+# Submission Note
+- This project was completed as part of the CSCI-1260 Object-Oriented Programming course where I created a 
+- Blazor web application for managing recipes.
+- The application meets all specified requirements, including OOP design principles, data structures, file I/O operations, 
+- UI development, and unit testing. 
+- The code is well-organized and documented, demonstrating a clear understanding of the concepts taught in the course.
+- It meets the requirements for OOP design, data structures, file I/O, UI development, and testing.
+- The project was built using Blazor WebAssembly, allowing for a responsive and interactive user experience.
+
+# References / Citations
+- Microsoft Blazor Documentation
+  https://learn.microsoft.com/en-us/aspnet/core/blazor
+- C# JSON Serialization
+  https://learn.microsoft.com/en-us/dotnet/standard/serialization/system-text-json
+- draw.io UML Tool
+  https://app.diagrams.net
