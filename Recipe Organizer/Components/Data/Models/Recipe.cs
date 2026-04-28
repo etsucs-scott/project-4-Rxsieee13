@@ -1,5 +1,6 @@
 ﻿using System;
 
+// Represents a recipe with its name, list of ingredients, instructions, category, favorite status, and creation date.
 public class Recipe
 {
     public string Name { get; set; } = "";
