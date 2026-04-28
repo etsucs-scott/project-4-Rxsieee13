@@ -1,2 +1,148 @@
 
-[]
+  [
+    {
+      "Name": "Strawberry Pancakes",
+      "Ingredients": [
+        {
+          "Name": "Flour",
+          "Quantity": 1.5,
+          "Unit": "cups"
+        },
+        {
+          "Name": "Milk",
+          "Quantity": 1,
+          "Unit": "cup"
+        },
+        {
+          "Name": "Eggs",
+          "Quantity": 2,
+          "Unit": ""
+        },
+        {
+          "Name": "Strawberries",
+          "Quantity": 1,
+          "Unit": "cup"
+        }
+      ],
+      "Instructions": "Mix ingredients, cook on a skillet, and top with strawberries.",
+      "Category": "Breakfast",
+      "IsFavorite": true,
+      "CreatedAt": "2026-04-01T10:00:00"
+    },
+    {
+      "Name": "Creamy Garlic Pasta",
+      "Ingredients": [
+        {
+          "Name": "Pasta",
+          "Quantity": 12,
+          "Unit": "oz"
+        },
+        {
+          "Name": "Garlic",
+          "Quantity": 3,
+          "Unit": "cloves"
+        },
+        {
+          "Name": "Heavy Cream",
+          "Quantity": 1,
+          "Unit": "cup"
+        },
+        {
+          "Name": "Parmesan",
+          "Quantity": 0.5,
+          "Unit": "cup"
+        }
+      ],
+      "Instructions": "Cook pasta, make garlic cream sauce, combine, and serve.",
+      "Category": "Dinner",
+      "IsFavorite": false,
+      "CreatedAt": "2026-04-02T10:00:00"
+    },
+    {
+      "Name": "Chicken Caesar Wrap",
+      "Ingredients": [
+        {
+          "Name": "Tortilla",
+          "Quantity": 1,
+          "Unit": ""
+        },
+        {
+          "Name": "Chicken",
+          "Quantity": 1,
+          "Unit": "cup"
+        },
+        {
+          "Name": "Romaine Lettuce",
+          "Quantity": 1,
+          "Unit": "cup"
+        },
+        {
+          "Name": "Caesar Dressing",
+          "Quantity": 2,
+          "Unit": "tbsp"
+        }
+      ],
+      "Instructions": "Add chicken, lettuce, and dressing to tortilla. Wrap tightly.",
+      "Category": "Lunch",
+      "IsFavorite": false,
+      "CreatedAt": "2026-04-03T10:00:00"
+    },
+    {
+      "Name": "Berry Smoothie",
+      "Ingredients": [
+        {
+          "Name": "Frozen Berries",
+          "Quantity": 1,
+          "Unit": "cup"
+        },
+        {
+          "Name": "Banana",
+          "Quantity": 1,
+          "Unit": ""
+        },
+        {
+          "Name": "Greek Yogurt",
+          "Quantity": 0.5,
+          "Unit": "cup"
+        },
+        {
+          "Name": "Milk",
+          "Quantity": 0.5,
+          "Unit": "cup"
+        }
+      ],
+      "Instructions": "Blend all ingredients until smooth.",
+      "Category": "Snack",
+      "IsFavorite": true,
+      "CreatedAt": "2026-04-04T10:00:00"
+    },
+    {
+      "Name": "Chocolate Mug Cake",
+      "Ingredients": [
+        {
+          "Name": "Flour",
+          "Quantity": 4,
+          "Unit": "tbsp"
+        },
+        {
+          "Name": "Sugar",
+          "Quantity": 3,
+          "Unit": "tbsp"
+        },
+        {
+          "Name": "Cocoa Powder",
+          "Quantity": 2,
+          "Unit": "tbsp"
+        },
+        {
+          "Name": "Milk",
+          "Quantity": 3,
+          "Unit": "tbsp"
+        }
+      ],
+      "Instructions": "Mix ingredients in a mug and microwave for 60-90 seconds.",
+      "Category": "Dessert",
+      "IsFavorite": true,
+      "CreatedAt": "2026-04-05T10:00:00"
+    }
+  ]
