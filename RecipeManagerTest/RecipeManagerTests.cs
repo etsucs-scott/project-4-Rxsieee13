@@ -12,6 +12,7 @@ namespace RecipeManagerTest
             return new RecipeManager();
         }
 
+        // Test to verify that adding a recipe increases the count of recipes
         [Fact]
         public void AddRecipe_ShouldIncreaseCount()
         {
@@ -24,6 +25,7 @@ namespace RecipeManagerTest
 
         }
 
+        // Test to verify that deleting a recipe removes it from the list
         [Fact]
         public void DeleteRecipe_ShouldRemoveRecipe()
         {
@@ -37,6 +39,7 @@ namespace RecipeManagerTest
             Assert.Empty(manager.GetAll());
         }
 
+        // Test to verify the toggle favorite functionality
         [Fact]
         public void ToggleFavorite_ShouldSetTrue()
         {
@@ -49,6 +52,7 @@ namespace RecipeManagerTest
             Assert.True(recipe.IsFavorite);
         }
 
+        // Test to verify that toggling favorite twice returns it to false
         [Fact]
         public void ToggleFavorite_Twice_ShouldReturnFalse()
         {
@@ -62,6 +66,7 @@ namespace RecipeManagerTest
             Assert.False(recipe.IsFavorite);
         }
 
+        // Test to verify that searching by name returns the correct recipe
         [Fact]
         public void SearchByName_ShouldFindMatch()
         {
@@ -74,6 +79,7 @@ namespace RecipeManagerTest
             Assert.Single(result);
         }
 
+        // Test to verify that searching by name is case insensitive
         [Fact]
         public void SearchByName_ShouldBeCaseInsensitive()
         {
@@ -86,6 +92,7 @@ namespace RecipeManagerTest
             Assert.Single(result);
         }
 
+        // Test to verify that searching by name with no matches returns an empty list
         [Fact]
         public void SearchByName_NoMatch_ShouldReturnEmpty()
         {
@@ -98,6 +105,7 @@ namespace RecipeManagerTest
             Assert.Empty(result);
         }
 
+        // Test to verify that getting recent recipes returns them in the correct order
         [Fact]
         public void GetRecentRecipes_ShouldReturnNewestFirst()
         {
@@ -119,6 +127,7 @@ namespace RecipeManagerTest
             Assert.Equal("New Recipe", result.First().Name);
         }
 
+        // Test to verify that getting recent recipes returns a maximum of 5 recipes
         [Fact]
         public void GetRecentRecipes_ShouldReturnMaxFive()
         {
@@ -138,6 +147,7 @@ namespace RecipeManagerTest
             Assert.Equal(5, result.Count);
         }
 
+        // Test to verify that getting the most used ingredients counts them correctly across all recipes
         [Fact]
         public void GetMostUsedIngredients_ShouldCountCorrectly()
         {
@@ -175,6 +185,7 @@ namespace RecipeManagerTest
             var result = manager.GetMostUsedIngredients();
         }
 
+        // Test to verify that adding multiple recipes stores all of them correctly
         [Fact]
         public void AddMultipleRecipes_ShouldStoreAll()
         {
@@ -189,6 +200,7 @@ namespace RecipeManagerTest
             Assert.Equal(3, allRecipes.Count);
         }
 
+        // Test to verify that the default value of IsFavorite is false when a new recipe is created
         [Fact]
         public void Favorite_DefaultShouldBeFalse()
         {

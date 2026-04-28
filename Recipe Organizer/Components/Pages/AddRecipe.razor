@@ -5,10 +5,12 @@
 
 <h2>➕ Add Recipe</h2>
 
+<!-- RECIPE FORM -->
 <div class="recipe-card">
     <input @bind="recipe.Name" placeholder="Recipe Name" />
     <input @bind="recipe.Category" placeholder="Category" />
 
+    <!-- INGREDIENTS SECTION -->
     <h4>Ingredients</h4>
 
     <input @bind="ingredientName" placeholder="Ingredient name" />
@@ -17,6 +19,7 @@
 
     <button @onclick="AddIngredient">Add Ingredient</button>
 
+    <!-- INGREDIENTS LIST -->
     <ul>
         @foreach (var i in recipe.Ingredients)
         {
