@@ -67,7 +67,8 @@ dotnet run --project ProjectName.App
 - dotnet build 
 - dotnet run
 - Then open your browser and navigate to:
-- https://localhost:7051
+- https://localhost:7051 (Windows)
+- http://localhost:5277 (Linux/Mac)
 
 # How to Run Unit Tests
 - Open Test Explorer in Visual Studio 2022
